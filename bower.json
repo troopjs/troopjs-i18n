@@ -1,0 +1,17 @@
+{
+  "name": "troopjs-i18n",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "troopjs-core": "^5.1"
+  }
+}
