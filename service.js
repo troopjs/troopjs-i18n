@@ -10,14 +10,14 @@ define([
 		this[DICTIONARY] = {};
 	}, {
 		"sig/start": function () {
-			return hub.publish("i18n/start");
+			return hub.publish("l10n/start");
 		},
 
 		"sig/stop": function () {
-			return hub.publish("i18n/stop");
+			return hub.publish("l10n/stop");
 		},
 
-		"hub/i18n/get": function (key, value) {
+		"hub/l10n/get": function (key, value) {
 			var me = this;
 			var dictionary = me[DICTIONARY];
 
@@ -27,20 +27,20 @@ define([
 				}
 				else {
 					hub
-						.publish("i18n/fetch", key, UNDEFINED)
+						.publish("l10n/fetch", key, UNDEFINED)
 						.spread(function (_key, _value) {
 							return _value === UNDEFINED
 								? [ key, value ]
-								: hub.publish("i18n/put", _key, _value);
+								: hub.publish("l10n/put", _key, _value);
 						})
 						.then(resolve, reject);
 				}
 			});
 		},
 
-		"hub/i18n/put": function (key, value) {
+		"hub/l10n/put": function (key, value) {
 			return hub
-				.publish("i18n/update", key, this[DICTIONARY][key] = value)
+				.publish("l10n/update", key, this[DICTIONARY][key] = value)
 				.yield([ key, value ]);
 		}
 	});
