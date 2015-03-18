@@ -41,7 +41,7 @@ define(['troopjs-l10n/version'], function (version) {\n\
 					"modules": [{
 						"name": "troopjs-l10n/main",
 						"exclude": [
-							"troopjs-core/component/gadget"
+							"troopjs-hub/component"
 						],
 						"excludeShallow": [
 							"troopjs-l10n/main"
