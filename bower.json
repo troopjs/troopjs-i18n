@@ -12,6 +12,6 @@
     "tests"
   ],
   "dependencies": {
-    "troopjs-core": "^5.1"
+    "troopjs-hub": "^1"
   }
 }

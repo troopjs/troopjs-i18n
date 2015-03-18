@@ -2,9 +2,9 @@
  * @license MIT http://troopjs.mit-license.org/
  */
 define([
-	"troopjs-core/component/gadget",
-	"troopjs-core/pubsub/hub"
-], function (Gadget, hub) {
+	"troopjs-hub/component",
+	"troopjs-hub/emitter"
+], function (Component, hub) {
 	"use strict";
 
 	var UNDEFINED;
@@ -14,7 +14,7 @@ define([
 	/**
 	 * Provides localization as a service
 	 * @class l10n.service
-	 * @extend core.component.gadget
+	 * @extend hub.component
 	 * @alias service.l10n
 	 */
 
@@ -57,7 +57,7 @@ define([
 	/**
 	 * @method constructor
 	 */
-	return Gadget.extend(function () {
+	return Component.extend(function () {
 		this[DICTIONARY] = {};
 	}, {
 		"displayName": "l10n/service",
@@ -69,7 +69,7 @@ define([
 		 * @fires hub/l10n/start
 		 */
 		"sig/start": function () {
-			return hub.publish("l10n/start");
+			return hub.emit("l10n/start");
 		},
 
 		/**
@@ -79,7 +79,7 @@ define([
 		 * @fires hub/l10n/stop
 		 */
 		"sig/stop": function () {
-			return hub.publish("l10n/stop");
+			return hub.emit("l10n/stop");
 		},
 
 		/**
@@ -100,11 +100,11 @@ define([
 				}
 				else {
 					hub
-						.publish("l10n/fetch", key, UNDEFINED)
+						.emit("l10n/fetch", key, UNDEFINED)
 						.spread(function (_key, _value) {
 							return _value === UNDEFINED
 								? [ key, value ]
-								: hub.publish("l10n/put", _key, _value);
+								: hub.emit("l10n/put", _key, _value);
 						})
 						.then(resolve, reject);
 				}
@@ -120,7 +120,7 @@ define([
 		 */
 		"hub/l10n/put": function (key, value) {
 			return hub
-				.publish("l10n/update", key, this[DICTIONARY][key] = value)
+				.emit("l10n/update", key, this[DICTIONARY][key] = value)
 				.yield([ key, value ]);
 		}
 	});
