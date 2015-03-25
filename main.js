@@ -2,8 +2,10 @@
  * @license MIT http://troopjs.mit-license.org/
  */
 define([
-	"./version",
-	"./service"
+  "./version",
+  "./service"
 ], function (version) {
-	return version;
+  "use strict";
+
+  return version;
 });
