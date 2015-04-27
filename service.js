@@ -19,37 +19,37 @@ define([
    */
 
   /**
-   * Localization start event
+   * Triggered when the localization service starts
    * @event hub/l10n/start
    */
 
   /**
-   * Localization stop event
+   * Triggered when the localization service stops
    * @event hub/l10n/stop
    */
 
   /**
-   * Localization GET event
+   * Triggered when a localization GET is performed
    * @event hub/l10n/get
    * @param {String} key Localization key
    * @param {String} [value] Default value
    */
 
   /**
-   * Localization FETCH event
+   * Triggered when a localization FETCH is performed
    * @event hub/l10n/fetch
    * @inheritdoc #event-hub/l10n/get
    */
 
   /**
-   * Localization PUT event
+   * Triggered when a localization PUT is performed
    * @event hub/l10n/put
    * @param {String} key Localization key
    * @param {String} value Localization value
    */
 
   /**
-   * Localization UPDATE event
+   * Triggered when a localization UPDATE is performed
    * @event hub/l10n/update
    * @inheritdoc #event-hub/l10n/put
    */
@@ -64,8 +64,8 @@ define([
 
     /**
      * @handler
+     * @inheritdoc #event-sig/start
      * @localdoc Notifies interested parties about the service start
-     * @inheritdoc
      * @fires hub/l10n/start
      */
     "sig/start": function () {
@@ -74,8 +74,8 @@ define([
 
     /**
      * @handler
+     * @inheritdoc #event-sig/stop
      * @localdoc Notifies interested parties about the service stop
-     * @inheritdoc
      * @fires hub/l10n/stop
      */
     "sig/stop": function () {
@@ -83,9 +83,9 @@ define([
     },
 
     /**
-     * Gets localization
      * @handler
      * @inheritdoc #event-hub/l10n/get
+     * @localdoc Gets localization
      * @fires hub/l10n/fetch
      * @fires hub/l10n/put
      * @return {Array}
@@ -112,9 +112,9 @@ define([
     },
 
     /**
-     * Puts localization
      * @handler
      * @inheritdoc #event-hub/l10n/put
+     * @localdoc Puts localization
      * @fires hub/l10n/update
      * @return {Array}
      */
